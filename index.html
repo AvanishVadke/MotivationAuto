@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Motivation App by Avanish</title>
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <center>
+      <div class="nav">
+        <a href="index.html">
+          <img src="home.png" alt="home Image" />
+          Home
+        </a>
+        <a href="about.html">
+          <img src="about.png" alt="about Image" />
+          about
+        </a>
+      </div>
+      <h1>Motivation App</h1>
+      <br />
+      <h2 id="msg" style="font-size: 50px; width: 90%"></h2>
+      <br />
+      <h2 id="aut"></h2>
+    </center>
+    <script>
+      function motivate() {
+        let msg = document.getElementById("msg");
+        let aut = document.getElementById("aut");
+
+        let url = "https://quotes-api-self.vercel.app/quote";
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            let q = data.quote;
+            let a = data.author;
+            msg.innerHTML = q;
+            aut.innerHTML = a;
+          })
+          .catch((err) => alert("issue" + err));
+      }
+      motivate();
+      setInterval(motivate, 5000);
+    </script>
+  </body>
+</html>
